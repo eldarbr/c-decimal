@@ -213,6 +213,7 @@ void twos_complement_add(decimal_t value_1, decimal_t value_2, decimal_t *res) {
   if (invert) result_sign = 1 - result_sign;
   bank_round_long_mantissa(result, &exp1);
   if (res) {
+    memset(res, 0, sizeof(decimal_t));
     memcpy(res->bits, result, 12);
     decimal_set_exponent(res, exp1);
     decimal_set_sign(res, result_sign);

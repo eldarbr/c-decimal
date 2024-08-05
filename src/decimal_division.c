@@ -57,6 +57,9 @@ int decimal_div(decimal_t value_1, decimal_t value_2, decimal_t *result) {
   if (!overflow) {
     overflow = bank_round_long_mantissa(quotient, &resulting_expo);
   }
+  if (result) {
+    memset(result, 0, sizeof(decimal_t));
+  }
   if (!overflow && result) {
     memset(result->bits, 0, 16);
     memcpy(result->bits, quotient, 12);

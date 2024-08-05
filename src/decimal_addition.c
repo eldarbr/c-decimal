@@ -43,6 +43,9 @@ int decimal_add(decimal_t value_1, decimal_t value_2, decimal_t *result) {
     if (!overflow && bank_round_long_mantissa(add_mantissa, &result_exponent)) {
       overflow = 1 << sign1;
     }
+    if (result) {
+      memset(result, 0, sizeof(decimal_t));
+    }
     if (!overflow && result) {
       for (int i = 0; i < 3; ++i) {
         result->bits[i] = add_mantissa[i];

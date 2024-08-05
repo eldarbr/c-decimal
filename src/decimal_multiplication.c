@@ -23,6 +23,9 @@ int decimal_mul(decimal_t value_1, decimal_t value_2, decimal_t *result) {
       result_code = 1;
     }
   }
+  if (result) {
+    memset(result, 0, sizeof(decimal_t));
+  }
   if (!result_code) {
     result_code = multiply_binary(&value_1, &value_2, result);
   }
