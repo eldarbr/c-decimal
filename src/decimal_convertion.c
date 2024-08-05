@@ -94,7 +94,8 @@ int convert_from_decimal_to_int(decimal_t src, int *dst) {
 
   const int value_sign = decimal_get_sign(&src);
 
-  unsigned long tmp_value = *((unsigned long *)src.bits);
+  unsigned long tmp_value = 0;
+  memcpy(&tmp_value, src.bits, sizeof(long));
   int overflow = (!value_sign && tmp_value > INT_MAX) ||
                  (value_sign && tmp_value > INT_MAX + 1l);
   if (overflow) {
@@ -102,7 +103,7 @@ int convert_from_decimal_to_int(decimal_t src, int *dst) {
   } else {
     int value = (int)tmp_value;
     if (value_sign) {
-      value *= -1;
+      value = -1 * (unsigned int)tmp_value;
     }
     *dst = value;
   }

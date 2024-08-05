@@ -41,8 +41,12 @@ int lower_long_mantissa(int *const mantissa, const int ints_count) {
   unsigned int *old_mantissa = (unsigned int *)mantissa;
   for (int i = ints_count - 1; i >= 0; --i) {
     if (i < ints_count - 1) {
-      *(new_mantissa + i) = *((long *)(old_mantissa + i)) / 10;
-      *(old_mantissa + i) = *((long *)(old_mantissa + i)) % 10;
+      long tmp = 0;
+      memcpy(&tmp, old_mantissa + i, sizeof(long));
+      long tmp_ten = tmp / 10;
+      tmp = tmp % 10;
+      memcpy(new_mantissa + i, &tmp_ten, sizeof(int));
+      memcpy(old_mantissa + i, &tmp, sizeof(int));
     } else {
       new_mantissa[i] = (old_mantissa[i]) / 10;
       old_mantissa[i] = (old_mantissa[i]) % 10;
@@ -64,7 +68,7 @@ int raise_long_mantissa(int *const mantissa, const int ints_count) {
   for (int i = 0; i < ints_count; ++i) {
     long current_raised = old_mantissa[i] * 10l + new_mantissa[i];
     if (i != ints_count - 1) {
-      *((long *)(new_mantissa + i)) = current_raised;
+      memcpy(new_mantissa + i, &current_raised, sizeof(long));
     } else {
       if (current_raised <= UINT_MAX) {
         new_mantissa[i] = current_raised;
@@ -93,7 +97,7 @@ int sum_mantissas(const int *v1, const int *v2, int *res, const int size) {
     if (i == size - 1) {
       *(res_c + i) = current & UINT_MAX;
     } else {
-      *((long *)(res_c + i)) = current;
+      memcpy(res_c + i, &current, sizeof(long));
     }
   }
   memcpy(res, res_c, sizeof(int) * size);
