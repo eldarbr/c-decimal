@@ -31,8 +31,7 @@ int decimal_mul(decimal_t value_1, decimal_t value_2, decimal_t *result) {
 
 int multiply_binary(const decimal_t *const v1, const decimal_t *const v2,
                     decimal_t *result) {
-  int result_exponent =
-      decimal_get_exponent(v1) + decimal_get_exponent(v2);
+  int result_exponent = decimal_get_exponent(v1) + decimal_get_exponent(v2);
   int v1_mantissa[6] = {0};
   memcpy(v1_mantissa, v1, 12);
   int v2_mantissa[6] = {0};

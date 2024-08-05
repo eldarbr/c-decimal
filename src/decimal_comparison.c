@@ -15,8 +15,7 @@ int decimal_is_equal(decimal_t value_1, decimal_t value_2) {
 
   int both_zero = is_zero(value_1) && is_zero(value_2);
 
-  if (decimal_get_sign(&value_1) != decimal_get_sign(&value_2) &&
-      !both_zero) {
+  if (decimal_get_sign(&value_1) != decimal_get_sign(&value_2) && !both_zero) {
     result = FALSE;
   } else {
     int scale1 = decimal_get_exponent(&value_1);
@@ -92,7 +91,8 @@ int decimal_is_less_or_equal(decimal_t value_1, decimal_t value_2) {
 
 int decimal_is_greater(decimal_t value_1, decimal_t value_2) {
   int result = FALSE;
-  if (!decimal_is_less(value_1, value_2) && !decimal_is_equal(value_1, value_2)) {
+  if (!decimal_is_less(value_1, value_2) &&
+      !decimal_is_equal(value_1, value_2)) {
     result = TRUE;
   }
   return result;
@@ -100,7 +100,8 @@ int decimal_is_greater(decimal_t value_1, decimal_t value_2) {
 
 int decimal_is_greater_or_equal(decimal_t value_1, decimal_t value_2) {
   int result = FALSE;
-  if (decimal_is_greater(value_1, value_2) || decimal_is_equal(value_1, value_2)) {
+  if (decimal_is_greater(value_1, value_2) ||
+      decimal_is_equal(value_1, value_2)) {
     result = TRUE;
   }
   return result;

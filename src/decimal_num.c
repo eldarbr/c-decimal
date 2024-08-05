@@ -57,15 +57,13 @@ int decimal_get_mantissa_scale(decimal_t num) {
   return scale;
 }
 
-void decimal_copy_number(const decimal_t *const src,
-                             decimal_t *const dst) {
+void decimal_copy_number(const decimal_t *const src, decimal_t *const dst) {
   if (src && dst) {
     memcpy(dst->bits, src->bits, 4 * sizeof(int));
   }
 }
 
-void decimal_copy_mantissa(const decimal_t *const src,
-                               decimal_t *const dst) {
+void decimal_copy_mantissa(const decimal_t *const src, decimal_t *const dst) {
   if (src && dst) {
     memcpy(dst->bits, src->bits, 3 * sizeof(int));
   }

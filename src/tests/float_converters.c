@@ -132,7 +132,8 @@ START_TEST(t_from_float_negative_ultrasmall) {
   const float inp = -1.45e-27f;
   decimal_t val = {0};
   decimal_t expected_result = {0};
-  convert_from_str_to_decimal("-.0000000000000000000000000015", &expected_result);
+  convert_from_str_to_decimal("-.0000000000000000000000000015",
+                              &expected_result);
   const int actual_return_code = convert_from_float_to_decimal(inp, &val);
   const int expected_return_code = OK;
 

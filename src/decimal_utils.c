@@ -183,8 +183,7 @@ int lower_binary(int *const mantissa, const int size) {
   return 0;
 }
 
-void twos_complement_add(decimal_t value_1, decimal_t value_2,
-                         decimal_t *res) {
+void twos_complement_add(decimal_t value_1, decimal_t value_2, decimal_t *res) {
   int mant1[6] = {0};
   int mant2[6] = {0};
   int result[6] = {0};

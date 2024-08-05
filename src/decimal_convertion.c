@@ -123,8 +123,7 @@ int convert_from_decimal_to_float(decimal_t src, float *dst) {
     initial_trim = 0;
   }
   const float mantissa = (float)(unsigned int)rounded_mantissa.bits[0];
-  float value =
-      mantissa / powf(10., decimal_get_exponent(&src) - initial_trim);
+  float value = mantissa / powf(10., decimal_get_exponent(&src) - initial_trim);
   if (decimal_get_sign(&src)) {
     value = -value;
   }
@@ -190,7 +189,8 @@ int convert_from_str_to_decimal(const char *str, decimal_t *num) {
 
 void reverse_str(char *str);
 
-int convert_from_decimal_to_str(const decimal_t *const src_num, char *const str) {
+int convert_from_decimal_to_str(const decimal_t *const src_num,
+                                char *const str) {
   if (!src_num || !str) {
     return 1;
   }
